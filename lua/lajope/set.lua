@@ -1,5 +1,5 @@
--- vim.g.loaded_netrw = 1 -- Disable NetRW screen
--- vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_netrw = 1 -- Disable NetRW screen
+vim.g.loaded_netrwPlugin = 1
 
 vim.opt.cmdheight = 1 -- Cmd height
 
@@ -34,6 +34,6 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = '80' -- Number of the highlighted line
 vim.opt.cursorline = true
 
-vim.api.nvim_set_option("clipboard","unnamed") 
+vim.api.nvim_set_option("clipboard","unnamedplus") 
 
 vim.opt.langmap = 'ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz'
