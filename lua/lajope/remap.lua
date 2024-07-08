@@ -205,6 +205,13 @@ vim.keymap.set('n', '<C-S-Right>', '<cmd>vertical resize +1<CR>')
 vim.keymap.set('n', '<C-S-Left>', '<cmd>vertical resize -1<CR>')
 
 
+-- Live Server
+vim.keymap.set('n', '<leader>hs', vim.cmd.LiveServerStart,
+  { desc = "Start live server in project directory" })
+vim.keymap.set('n', '<leader>hp', vim.cmd.LiveServerStop,
+  { desc = "Stop live server in project directory" })
+
+
 -- Comment (default mappings)
 --
 -- NORMAL MODE

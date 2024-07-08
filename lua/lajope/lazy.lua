@@ -123,6 +123,13 @@ local plugins = {
   'sainnhe/gruvbox-material',
   'maxmx03/fluoromachine.nvim',
   --'rebelot/kanagawa.nvim',
+  
+  {
+        'barrett-ruth/live-server.nvim',
+        build = 'pnpm add -g live-server',
+        cmd = { 'LiveServerStart', 'LiveServerStop' },
+        config = true
+    }
 }
 
 local opts = {}
