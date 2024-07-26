@@ -18,6 +18,12 @@ local plugins = {
     tag = '0.1.7'
   },
   {
+    "nvim-telescope/telescope-frecency.nvim",
+    config = function()
+      require("telescope").load_extension "frecency"
+    end,
+  },
+  {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate'
   },
@@ -37,10 +43,10 @@ local plugins = {
 
       -- Autocompletion
       { 'hrsh7th/nvim-cmp' },
-      { 'hrsh7th/cmp-buffer'},
-      { 'hrsh7th/cmp-path'},
-      { 'hrsh7th/cmp-nvim-lsp'},
-      { 'hrsh7th/cmp-nvim-lua'},
+      { 'hrsh7th/cmp-buffer' },
+      { 'hrsh7th/cmp-path' },
+      { 'hrsh7th/cmp-nvim-lsp' },
+      { 'hrsh7th/cmp-nvim-lua' },
       { 'saadparwaiz1/cmp_luasnip' },
       {
         'L3MON4D3/LuaSnip',
@@ -81,7 +87,7 @@ local plugins = {
     'akinsho/bufferline.nvim',
     version = '*'
   },
-  
+
   'nvim-lualine/lualine.nvim',
 
   'tpope/vim-obsession',
@@ -105,11 +111,11 @@ local plugins = {
   --'tikhomirov/vim-glsl'
   {
     'kevinhwang91/nvim-ufo',
-    dependencies = {{ 'kevinhwang91/promise-async' }}
+    dependencies = { { 'kevinhwang91/promise-async' } }
   },
   {
     'VonHeikemen/fine-cmdline.nvim',
-    dependencies = {{ 'MunifTanjim/nui.nvim' }}
+    dependencies = { { 'MunifTanjim/nui.nvim' } }
   },
 
   'ncm2/float-preview.nvim',
@@ -123,13 +129,13 @@ local plugins = {
   'sainnhe/gruvbox-material',
   'maxmx03/fluoromachine.nvim',
   --'rebelot/kanagawa.nvim',
-  
+
   {
-        'barrett-ruth/live-server.nvim',
-        build = 'pnpm add -g live-server',
-        cmd = { 'LiveServerStart', 'LiveServerStop' },
-        config = true
-    }
+    'barrett-ruth/live-server.nvim',
+    build = 'pnpm add -g live-server',
+    cmd = { 'LiveServerStart', 'LiveServerStop' },
+    config = true
+  }
 }
 
 local opts = {}

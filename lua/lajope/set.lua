@@ -1,7 +1,8 @@
 vim.g.loaded_netrw = 1 -- Disable NetRW screen
 vim.g.loaded_netrwPlugin = 1
 
--- vim.opt.smartcase = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 vim.opt.cmdheight = 1         -- Cmd height
 

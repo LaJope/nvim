@@ -4,7 +4,9 @@ vim.g.mapleader = ' '
 -- Basic
 vim.keymap.set('n', '<C-s>', vim.cmd.w, { desc = 'Save current file' })
 vim.keymap.set('n', '<leader><leader>', '<cmd>so<CR>', { desc = 'Source current file' })
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = 'Make the current file executable' })
+vim.keymap.set('n', '<leader>x', '<cmd>!chmod +x %<CR>', { silent = true, desc = 'Make the current file executable' })
+vim.keymap.set('n', '<leader>qq', '<cmd>:qa<CR>', { desc = 'Quit neovim altogether (warns when unsaved)' })
+vim.keymap.set('n', '<leader>qq', '<cmd>:qa<CR>', { desc = 'Quit neovim altogether (without warning )' })
 
 
 -- Unbind
@@ -30,8 +32,8 @@ vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'Switch to upper window' })
 
 
 -- Move lines up and down
-vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move the line down' })
-vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move the line up' })
+vim.keymap.set('v', 'J', ':m \'>+1<CR>gv=gv', { desc = 'Move the line down' })
+vim.keymap.set('v', 'K', ':m \'<-2<CR>gv=gv', { desc = 'Move the line up' })
 
 
 -- Vimtex
@@ -84,10 +86,10 @@ vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Move to the previous searched word' 
 
 
 -- Copy and paste
-vim.keymap.set("x", "<leader>p", [["_dP]], { desc = 'Paste text without overriding clipboard' })
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = 'Copy to the global buffer +y' })
-vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = 'Copy to the global buffer +Y' })
-vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], { desc = 'Delete without copying' })
+vim.keymap.set('x', '<leader>p', [["_dP]], { desc = 'Paste text without overriding clipboard' })
+vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]], { desc = 'Copy to the global buffer +y' })
+vim.keymap.set('n', '<leader>Y', [["+Y]], { desc = 'Copy to the global buffer +Y' })
+vim.keymap.set({ 'n', 'v' }, '<leader>d', [["_d]], { desc = 'Delete without copying' })
 
 
 -- Trouble
@@ -122,9 +124,9 @@ end, { desc = 'Format code with LspZeroFormat or LSP' })
 
 
 -- Rename
-vim.keymap.set("v", "<leader>s", [[:s///gI<Left><Left><Left><Left>]],
+vim.keymap.set('v', '<leader>s', [[:s///gI<Left><Left><Left><Left>]],
   { desc = 'Rename every enstance of some word in the selected area' })
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+vim.keymap.set('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
   { desc = 'Rename every enstance of the word in the file' })
 
 
@@ -148,18 +150,19 @@ vim.keymap.set('n', '<leader>i', vim.cmd.UndotreeFocus, { desc = 'Focus on UndoT
 
 
 -- Comment
-vim.keymap.set('n', '<leader>/', function() require("Comment.api").toggle.linewise.current() end,
+vim.keymap.set('n', '<leader>/', function() require('Comment.api').toggle.linewise.current() end,
   { desc = 'Comment current line' })
-vim.keymap.set('v', '<leader>/', '<ESC><cmd>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>',
+vim.keymap.set('v', '<leader>/', '<ESC><cmd>lua require(\'Comment.api\').toggle.linewise(vim.fn.visualmode())<CR>',
   { desc = 'Comment selected lines' })
 
 
 -- Telescope
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = 'Open telescope file search' })
+vim.keymap.set('n', '<leader>pe', builtin.find_files, { desc = 'Open telescope file search' })
 vim.keymap.set('n', '<C-p>', builtin.git_files, { desc = 'Open telescope git file search' })
 vim.keymap.set('n', '<leader>ps', builtin.live_grep, { desc = 'Open telescope word search' })
-vim.keymap.set("n", "<leader>pe", "<Cmd>Telescope frecency workspace=CWD<CR>")
+vim.keymap.set("n", "<leader>pf", "<Cmd>Telescope frecency workspace=CWD<CR>",
+  { desc = 'Open telescope frecency file search' })
 
 
 -- Cmake-tools
