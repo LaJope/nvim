@@ -89,8 +89,8 @@ require('mason').setup({})
 require('mason-lspconfig').setup({
   ensure_installed = {
     'clangd',
-    -- clang-format
-    -- codelldb
+    -- 'clang-format',
+    -- 'codelldb'
   },
   handlers = {
     lsp_zero.default_setup,
@@ -147,10 +147,3 @@ cmp.setup({
     documentation = cmp.config.window.bordered(),
   },
 })
-
-require('mason-nvim-dap').setup({
-  ensure_installed = {
-    'codelldb',
-  }
-})
-

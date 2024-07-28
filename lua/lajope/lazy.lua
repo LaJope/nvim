@@ -15,13 +15,15 @@ local plugins = {
   'nvim-lua/plenary.nvim',
   {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.7'
-  },
-  {
-    "nvim-telescope/telescope-frecency.nvim",
+    tag = '0.1.8',
+    dependencies = {
+      'nvim-telescope/telescope-frecency.nvim',
+    },
     config = function()
-      require("telescope").load_extension "frecency"
+      local telescope = require('telescope')
+      telescope.load_extension('frecency')
     end,
+
   },
   {
     'nvim-treesitter/nvim-treesitter',
@@ -79,8 +81,23 @@ local plugins = {
   },
 
   'mfussenegger/nvim-dap',
-  'jay-babu/mason-nvim-dap.nvim',
-  'rcarriga/nvim-dap-ui',
+  {
+    'jay-babu/mason-nvim-dap.nvim',
+    dependencies = {
+      'williamboman/mason.nvim',
+      'mfussenegger/nvim-dap'
+    },
+    opt = {
+      handlers = {},
+    }
+  },
+  {
+    'rcarriga/nvim-dap-ui',
+    dependencies = {
+      'nvim-neotest/nvim-nio',
+      'mfussenegger/nvim-dap'
+    },
+  },
 
   'lewis6991/gitsigns.nvim',
   {
@@ -135,7 +152,15 @@ local plugins = {
     build = 'pnpm add -g live-server',
     cmd = { 'LiveServerStart', 'LiveServerStop' },
     config = true
-  }
+  },
+
+  {
+    'norcalli/nvim-colorizer.lua',
+    config = function()
+      require('colorizer').setup()
+    end
+  },
+
 }
 
 local opts = {}

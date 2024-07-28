@@ -5,8 +5,8 @@ vim.g.mapleader = ' '
 vim.keymap.set('n', '<C-s>', vim.cmd.w, { desc = 'Save current file' })
 vim.keymap.set('n', '<leader><leader>', '<cmd>so<CR>', { desc = 'Source current file' })
 vim.keymap.set('n', '<leader>x', '<cmd>!chmod +x %<CR>', { silent = true, desc = 'Make the current file executable' })
-vim.keymap.set('n', '<leader>qq', '<cmd>:qa<CR>', { desc = 'Quit neovim altogether (warns when unsaved)' })
-vim.keymap.set('n', '<leader>qq', '<cmd>:qa<CR>', { desc = 'Quit neovim altogether (without warning )' })
+vim.keymap.set('n', '<leader>qq', '<cmd>:qa!<CR>', { desc = 'Quit neovim altogether (warns when unsaved)' })
+vim.keymap.set('n', '<leader>qy', '<cmd>:qa<CR>', { desc = 'Quit neovim altogether (without warning)' })
 
 
 -- Unbind
@@ -34,6 +34,20 @@ vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'Switch to upper window' })
 -- Move lines up and down
 vim.keymap.set('v', 'J', ':m \'>+1<CR>gv=gv', { desc = 'Move the line down' })
 vim.keymap.set('v', 'K', ':m \'<-2<CR>gv=gv', { desc = 'Move the line up' })
+
+
+-- Nvim dap
+
+vim.keymap.set('n', 'mb', '<cmd>DapToggleBreakpoint<CR>',
+  { desc = 'Add breakpoint at current line' })
+vim.keymap.set('n', 'mi', '<cmd>DapStepInto<CR>',
+  { desc = 'Debbuger step into' })
+vim.keymap.set('n', 'mu', '<cmd>DapStepOut<CR>',
+  { desc = 'Debugger step out' })
+vim.keymap.set('n', 'mo', '<cmd>DapStepOver<CR>',
+  { desc = 'Debugger step over' })
+vim.keymap.set('n', 'mq', '<cmd>DapTerminate<CR>',
+  { desc = 'Terminate debugger' })
 
 
 -- Vimtex
@@ -161,9 +175,8 @@ local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>pe', builtin.find_files, { desc = 'Open telescope file search' })
 vim.keymap.set('n', '<C-p>', builtin.git_files, { desc = 'Open telescope git file search' })
 vim.keymap.set('n', '<leader>ps', builtin.live_grep, { desc = 'Open telescope word search' })
-vim.keymap.set("n", "<leader>pf", "<Cmd>Telescope frecency workspace=CWD<CR>",
+vim.keymap.set('n', '<leader>pf', '<Cmd>Telescope frecency workspace=CWD<CR>',
   { desc = 'Open telescope frecency file search' })
-
 
 -- Cmake-tools
 vim.keymap.set('n', '<leader>cmg', vim.cmd.CMakeGenerate,
@@ -174,13 +187,24 @@ vim.keymap.set('n', '<leader>cmb', function()
   vim.cmd('CMakeBuild')
 end, { desc = 'Run CMakeBuild with updating source files' })
 
-vim.keymap.set('n', '<leader>cmt', vim.cmd.CMakeSelectBuildTarget,
+vim.keymap.set('n', '<leader>cmsb', vim.cmd.CMakeSelectBuildTarget,
   { desc = 'Change build target' })
 
 vim.keymap.set('n', '<leader>cmp', function()
   vim.cmd('CMakeSelectBuildTarget')
   vim.cmd('CMakeBuild')
 end, { desc = 'Change build target and build' })
+
+vim.keymap.set('n', '<leader>cmst', vim.cmd.CMakeSelectBuildType,
+  { desc = 'Change build type' })
+
+vim.keymap.set('n', 'mr', function()
+    vim.cmd('CMakeSelectLaunchTarget')
+    vim.cmd('CMakeDebug')
+  end,
+  { desc = 'Toggle the state of the debugger' })
+
+
 
 
 -- Bufferline
@@ -210,9 +234,9 @@ vim.keymap.set('n', '<C-S-Left>', '<cmd>vertical resize -1<CR>')
 
 -- Live Server
 vim.keymap.set('n', '<leader>hs', vim.cmd.LiveServerStart,
-  { desc = "Start live server in project directory" })
+  { desc = 'Start live server in project directory' })
 vim.keymap.set('n', '<leader>hp', vim.cmd.LiveServerStop,
-  { desc = "Stop live server in project directory" })
+  { desc = 'Stop live server in project directory' })
 
 
 -- Comment (default mappings)
