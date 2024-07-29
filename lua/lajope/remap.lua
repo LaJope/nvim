@@ -38,6 +38,8 @@ vim.keymap.set('v', 'K', ':m \'<-2<CR>gv=gv', { desc = 'Move the line up' })
 
 -- Nvim dap
 
+vim.keymap.set('n', 'me', '<cmd>DapContinue<CR>',
+  { desc = 'End the debbug' })
 vim.keymap.set('n', 'mb', '<cmd>DapToggleBreakpoint<CR>',
   { desc = 'Add breakpoint at current line' })
 vim.keymap.set('n', 'mi', '<cmd>DapStepInto<CR>',
