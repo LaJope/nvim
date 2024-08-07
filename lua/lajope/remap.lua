@@ -38,7 +38,7 @@ vim.keymap.set('v', 'K', ':m \'<-2<CR>gv=gv', { desc = 'Move the line up' })
 
 -- Nvim dap
 
-vim.keymap.set('n', 'me', '<cmd>DapContinue<CR>',
+vim.keymap.set('n', 'mr', '<cmd>DapContinue<CR>',
   { desc = 'End the debbug' })
 vim.keymap.set('n', 'mb', '<cmd>DapToggleBreakpoint<CR>',
   { desc = 'Add breakpoint at current line' })
@@ -109,19 +109,29 @@ vim.keymap.set({ 'n', 'v' }, '<leader>d', [["_d]], { desc = 'Delete without copy
 
 
 -- Trouble
-local trouble = require('trouble')
-vim.keymap.set('n', '<leader>tt', function() trouble.toggle() end, { desc = 'Toggle default Trouble diagnostic window' })
-vim.keymap.set('n', '<leader>tw', function() trouble.toggle('workspace_diagnostics') end,
-  { desc = 'Toggle trouble workspace diagnostic window' })
-vim.keymap.set('n', '<leader>td', function() trouble.toggle('document_diagnostics') end,
-  { desc = 'Toggle trouble document diagnostic window' })
-vim.keymap.set('n', '<leader>tq', function() trouble.toggle('quickfix') end, { desc = 'Toggle trouble quickfix' })
-vim.keymap.set('n', '<leader>tl', function() trouble.toggle('loclist') end, { desc = 'Toggle trouble loclist' })
-vim.keymap.set('n', 'tR', function() trouble.toggle('lsp_references') end, { desc = 'Toggle trouble lsp references' })
+vim.keymap.set('n', '<leader>tt',
+  '<cmd>Trouble diagnostics toggle<cr>',
+  { desc = 'Diagnostics (Trouble)' })
 
+vim.keymap.set('n', '<leader>tb',
+  '<cmd>Trouble diagnostics toggle filter.buf=0<cr>',
+  { desc = 'Buffer Diagnostics (Trouble)' })
 
--- Colorscheme
-vim.keymap.set('n', '<leader>cot', vim.cmd.TransparentToggle, { desc = 'Toggle transparency of the UI' })
+vim.keymap.set('n', '<leader>ts',
+  '<cmd>Trouble symbols toggle focus=false<cr>',
+  { desc = 'Symbols (Trouble)' })
+
+vim.keymap.set('n', '<leader>tl',
+  '<cmd>Trouble lsp toggle focus=false win.position=right<cr>',
+  { desc = 'LSP Definitions / references / ... (Trouble)' })
+
+vim.keymap.set('n', '<leader>tp',
+  '<cmd>Trouble loclist toggle<cr>',
+  { desc = 'Location List (Trouble)' })
+
+vim.keymap.set('n', '<leader>tq',
+  '<cmd>Trouble qflist toggle<cr>',
+  { desc = 'Quickfix List (Trouble)' })
 
 
 -- Finecmd
@@ -181,26 +191,26 @@ vim.keymap.set('n', '<leader>pf', '<Cmd>Telescope frecency workspace=CWD<CR>',
   { desc = 'Open telescope frecency file search' })
 
 -- Cmake-tools
-vim.keymap.set('n', '<leader>cmg', vim.cmd.CMakeGenerate,
+vim.keymap.set('n', '<leader>cg', vim.cmd.CMakeGenerate,
   { desc = 'Run CMakeGenerate' })
 
-vim.keymap.set('n', '<leader>cmb', function()
+vim.keymap.set('n', '<leader>cb', function()
   vim.cmd('silent !inv updateSrc')
   vim.cmd('CMakeBuild')
 end, { desc = 'Run CMakeBuild with updating source files' })
 
-vim.keymap.set('n', '<leader>cmsb', vim.cmd.CMakeSelectBuildTarget,
+vim.keymap.set('n', '<leader>csb', vim.cmd.CMakeSelectBuildTarget,
   { desc = 'Change build target' })
 
-vim.keymap.set('n', '<leader>cmp', function()
+vim.keymap.set('n', '<leader>cp', function()
   vim.cmd('CMakeSelectBuildTarget')
   vim.cmd('CMakeBuild')
 end, { desc = 'Change build target and build' })
 
-vim.keymap.set('n', '<leader>cmst', vim.cmd.CMakeSelectBuildType,
+vim.keymap.set('n', '<leader>cst', vim.cmd.CMakeSelectBuildType,
   { desc = 'Change build type' })
 
-vim.keymap.set('n', 'mr', function()
+vim.keymap.set('n', '<leader>cr', function()
     vim.cmd('CMakeSelectLaunchTarget')
     vim.cmd('CMakeDebug')
   end,

@@ -108,7 +108,11 @@ local plugins = {
   'nvim-lualine/lualine.nvim',
 
   'tpope/vim-obsession',
-  'folke/trouble.nvim',
+  {
+    'folke/trouble.nvim',
+    opts = {},
+    cmd = "Trouble"
+  },
   {
     'folke/which-key.nvim',
     config = function()
