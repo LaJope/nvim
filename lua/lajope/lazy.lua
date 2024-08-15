@@ -148,8 +148,6 @@ local plugins = {
 
 
   'sainnhe/gruvbox-material',
-  'maxmx03/fluoromachine.nvim',
-  --'rebelot/kanagawa.nvim',
 
   {
     'barrett-ruth/live-server.nvim',
@@ -164,7 +162,6 @@ local plugins = {
       require('colorizer').setup()
     end
   },
-
 }
 
 local opts = {}
