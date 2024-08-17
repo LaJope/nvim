@@ -12,18 +12,18 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
-  'nvim-lua/plenary.nvim',
   {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.8',
     dependencies = {
-      'nvim-telescope/telescope-frecency.nvim',
+      'nvim-lua/plenary.nvim',
     },
+    tag = '0.1.8',
+  },
+  {
+    "nvim-telescope/telescope-frecency.nvim",
     config = function()
-      local telescope = require('telescope')
-      telescope.load_extension('frecency')
+      -- require("telescope").load_extension "frecency"
     end,
-
   },
   {
     'nvim-treesitter/nvim-treesitter',
