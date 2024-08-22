@@ -1,6 +1,9 @@
 vim.g.mapleader = ' '
 
 
+vim.keymap.set("n", "<leader>fb", ":Telescope file_browser path=%:p:h select_buffer=true<CR>")
+
+
 -- Basic
 vim.keymap.set('n', '<C-s>', vim.cmd.w, { desc = 'Save current file' })
 vim.keymap.set('n', '<leader><leader>', '<cmd>so<CR>', { desc = 'Source current file' })
@@ -25,11 +28,20 @@ vim.keymap.set('i', '<C-k>', '<Up>', { desc = 'Move up (insert mode)' })
 
 
 -- Swith between windows
-vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Switch to left window' })
-vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Switch to right window' })
-vim.keymap.set('n', '<C-j>', '<C-w>j', { desc = 'Switch to lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'Switch to upper window' })
+-- vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Switch to left window' })
+-- vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Switch to right window' })
+-- vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'Switch to upper window' })
+-- vim.keymap.set('n', '<C-j>', '<C-w>j', { desc = 'Switch to lower window' })
 
+-- Tmux + nvim navigations
+vim.keymap.set('n', '<C-h>', '<cmd>TmuxNavigateLeft<CR>',
+  { desc = 'Switch to left window/tmux pane' })
+vim.keymap.set('n', '<C-l>', '<cmd>TmuxNavigateRight<CR>',
+  { desc = 'Switch to right window/tmux pane' })
+vim.keymap.set('n', '<C-k>', '<cmd>TmuxNavigateUp<CR>',
+  { desc = 'Switch to upper window/tmux pane' })
+vim.keymap.set('n', '<C-j>', '<cmd>TmuxNavigateDown<CR>',
+  { desc = 'Switch to lower window/tmux pane' })
 
 -- Move lines up and down
 vim.keymap.set('v', 'J', ':m \'>+1<CR>gv=gv', { desc = 'Move the line down' })

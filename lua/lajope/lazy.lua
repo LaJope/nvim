@@ -1,3 +1,5 @@
+---@diagnostic disable: undefined-field
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -14,16 +16,11 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = {
   {
     'nvim-telescope/telescope.nvim',
+    tag = '0.1.8',
     dependencies = {
       'nvim-lua/plenary.nvim',
-    },
-    tag = '0.1.8',
-  },
-  {
-    "nvim-telescope/telescope-frecency.nvim",
-    config = function()
-      -- require("telescope").load_extension "frecency"
-    end,
+      'nvim-telescope/telescope-frecency.nvim',
+    }
   },
   {
     'nvim-treesitter/nvim-treesitter',
@@ -162,6 +159,8 @@ local plugins = {
       require('colorizer').setup()
     end
   },
+
+  'christoomey/vim-tmux-navigator',
 }
 
 local opts = {}

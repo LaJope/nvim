@@ -10,8 +10,14 @@ telescope.setup({
       'MakeFiles',
       'cmake_install.cmake'
     }
+  },
+  extensions = {
+    frecency = {
+      auto_validate = false,
+      matcher = "fuzzy",
+      path_display = { "filename_first" },
+    },
   }
 })
 
-
--- telescope.load_extension('frecency')
+telescope.load_extension('frecency')
