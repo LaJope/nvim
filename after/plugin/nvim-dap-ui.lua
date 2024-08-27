@@ -6,15 +6,15 @@ dapui.setup({
       elements = {
         {
           id = "scopes",
-          size = 0.5
+          size = 0.7
         },
         {
           id = "breakpoints",
-          size = 0.25
+          size = 0.15
         },
         {
           id = "stacks",
-          size = 0.25
+          size = 0.15
         },
         -- {
         --   id = "watches",

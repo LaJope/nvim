@@ -8,8 +8,8 @@ vim.keymap.set("n", "<leader>fb", ":Telescope file_browser path=%:p:h select_buf
 vim.keymap.set('n', '<C-s>', vim.cmd.w, { desc = 'Save current file' })
 vim.keymap.set('n', '<leader><leader>', '<cmd>so<CR>', { desc = 'Source current file' })
 vim.keymap.set('n', '<leader>x', '<cmd>!chmod +x %<CR>', { silent = true, desc = 'Make the current file executable' })
-vim.keymap.set('n', '<leader>qq', '<cmd>:qa!<CR>', { desc = 'Quit neovim altogether (warns when unsaved)' })
-vim.keymap.set('n', '<leader>qy', '<cmd>:qa<CR>', { desc = 'Quit neovim altogether (without warning)' })
+vim.keymap.set('n', '<leader>qq', '<cmd>:qa<CR>', { desc = 'Quit neovim altogether (warns when unsaved)' })
+vim.keymap.set('n', '<leader>qy', '<cmd>:qa!<CR>', { desc = 'Quit neovim altogether (without warning)' })
 
 
 -- Unbind
