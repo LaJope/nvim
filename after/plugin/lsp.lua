@@ -24,7 +24,7 @@ lsp_zero.on_attach(function(client, bufnr)
   vim.keymap.set('n', ']d', function() vim.diagnostic.goto_next() end,
     vim.tbl_extend('force', opts, { desc = 'Go to next error' }))
 
-  vim.keymap.set('n', '<leader>vca', function() vim.lsp.buf.code_action() end,
+  vim.keymap.set('n', '<leader>vi', function() vim.lsp.buf.code_action() end,
     vim.tbl_extend('force', opts, { desc = 'Select an available code action' }))
 
   vim.keymap.set('n', '<leader>vrr', function() vim.lsp.buf.references() end,

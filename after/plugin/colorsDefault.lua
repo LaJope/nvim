@@ -15,6 +15,7 @@ vim.cmd('highlight FloatBorder guibg=NONE')
 local transparent = require('transparent')
 transparent.clear_prefix('BufferLine')
 transparent.clear_prefix('NvimTree')
+transparent.clear_prefix('TroubleNormal')
 
 vim.cmd [[
   hi! LspReferenceRead cterm=bold ctermbg=235 guibg=#4b6769

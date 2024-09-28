@@ -319,3 +319,17 @@ vim.keymap.set('n', '<leader>hp', vim.cmd.LiveServerStop,
 --  ['<C-b>'] = cmp_action.luasnip_jump_backward(),
 --  ['<C-u>'] = cmp.mapping.scroll_docs(-4),
 --  ['<C-d>'] = cmp.mapping.scroll_docs(4),
+
+-- Misc
+
+vim.keymap.set('n', '<leader>hd', function()
+    for _ = 1, 10, 1 do require("duck").hatch("🦆") end
+  end,
+  { desc = 'Hatch duck' })
+vim.keymap.set('n', '<leader>hk', function() require("duck").cook() end,
+  { desc = 'Cook duck' })
+vim.keymap.set('n', '<leader>ha', function() require("duck").cook_all() end,
+  { desc = 'Cook all ducks' })
+vim.keymap.set('n', '<leader>ht', function() require('typewriter').toggle() end,
+  { desc = 'Toggle typewriter' })
+
