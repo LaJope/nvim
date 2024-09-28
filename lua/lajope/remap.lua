@@ -323,7 +323,7 @@ vim.keymap.set('n', '<leader>hp', vim.cmd.LiveServerStop,
 -- Misc
 
 vim.keymap.set('n', '<leader>hd', function()
-    for _ = 1, 10, 1 do require("duck").hatch("🦆") end
+    for _ = 1, 10, 1 do require("duck").hatch("ඞ") end
   end,
   { desc = 'Hatch duck' })
 vim.keymap.set('n', '<leader>hk', function() require("duck").cook() end,
