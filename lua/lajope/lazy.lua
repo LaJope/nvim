@@ -179,11 +179,6 @@ local plugins = {
   },
   'eandrju/cellular-automaton.nvim',
   'tamton-aquib/duck.nvim',
-  {
-    'v1nh1shungry/typewriter.nvim',
-    lazy = false,
-    opts = {},
-}
 
 }
 

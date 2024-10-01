@@ -1,8 +1,6 @@
 vim.g.mapleader = ' '
 
-
-vim.keymap.set("n", "<leader>fb", ":Telescope file_browser path=%:p:h select_buffer=true<CR>")
-
+vim.keymap.set('n', '<leader>qf', '<cmd>cclose<CR>', { desc = 'Close quickfix' })
 
 -- Basic
 vim.keymap.set('n', '<C-s>', vim.cmd.w, { desc = 'Save current file' })
@@ -330,6 +328,3 @@ vim.keymap.set('n', '<leader>hk', function() require("duck").cook() end,
   { desc = 'Cook duck' })
 vim.keymap.set('n', '<leader>ha', function() require("duck").cook_all() end,
   { desc = 'Cook all ducks' })
-vim.keymap.set('n', '<leader>ht', function() require('typewriter').toggle() end,
-  { desc = 'Toggle typewriter' })
-
