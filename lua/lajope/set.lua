@@ -1,5 +1,5 @@
--- vim.g.loaded_netrw = 1 -- Disable NetRW screen
--- vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_netrw = 1 -- Disable NetRW screen
+vim.g.loaded_netrwPlugin = 1
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
@@ -15,6 +15,8 @@ vim.opt.tabstop = 2 -- Width of tabulation
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
+
+vim.opt.showtabline = 1
 
 vim.opt.smartindent = true
 
@@ -41,5 +43,7 @@ vim.opt.cursorline = true
 ---@diagnostic disable-next-line: deprecated
 vim.api.nvim_set_option("clipboard", "unnamedplus")
 
-vim.opt.langmap =
-'ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz'
+vim.opt.langmap = 'ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;' ..
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZ,' ..
+    'фисвуапршолдьтщзйкыегмцчня;' ..
+    'abcdefghijklmnopqrstuvwxyz'
