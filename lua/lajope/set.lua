@@ -32,7 +32,7 @@ vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
 
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 14
 vim.opt.signcolumn = 'yes'
 vim.opt.isfname:append('@-@')
 
@@ -47,3 +47,9 @@ vim.opt.langmap = 'ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;' ..
     'ABCDEFGHIJKLMNOPQRSTUVWXYZ,' ..
     'фисвуапршолдьтщзйкыегмцчня;' ..
     'abcdefghijklmnopqrstuvwxyz'
+
+vim.o.autoread = true
+vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
+  command = "if mode() != 'c' | checktime | endif",
+  pattern = { "*" },
+})
