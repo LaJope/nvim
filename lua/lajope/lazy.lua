@@ -181,14 +181,34 @@ local plugins = {
   'tamton-aquib/duck.nvim',
   {
     "amitds1997/remote-nvim.nvim",
-    version = "*",                      -- Pin to GitHub releases
+    version = "*",                     -- Pin to GitHub releases
     dependencies = {
-      "nvim-lua/plenary.nvim",          -- For standard functions
-      "MunifTanjim/nui.nvim",           -- To build the plugin UI
-      "nvim-telescope/telescope.nvim",  -- For picking b/w different remote methods
+      "nvim-lua/plenary.nvim",         -- For standard functions
+      "MunifTanjim/nui.nvim",          -- To build the plugin UI
+      "nvim-telescope/telescope.nvim", -- For picking b/w different remote methods
     },
     config = true,
   },
+  {
+    "GR3YH4TT3R93/zellij-nav.nvim",
+    cond = os.getenv("ZELLIJ") == "0",
+    event = "VeryLazy",
+    init = function()
+      vim.g.zellij_nav_default_mappings = false
+    end,
+    opts = {},
+    keys = {
+      { "<C-h>", "<cmd>ZellijNavigateLeft<CR>",  { silent = true, desc = 'trash' } },
+      { "<C-j>", "<cmd>ZellijNavigateDown<CR>",  { silent = true } },
+      { "<C-k>", "<cmd>ZellijNavigateUp<CR>",    { silent = true } },
+      { "<C-l>", "<cmd>ZellijNavigateRight<CR>", { silent = true } },
+      { "<C-n>", "<cmd>ZellijNewPane<CR>",       { silent = true } },
+      { "<C-s>", "<cmd>ZellijNewPaneSplit<CR>",  { silent = true } },
+      { "<C-v>", "<cmd>ZellijNewPaneVSplit<CR>", { silent = true } },
+      { "<C-x>", "<cmd>ZellijClosePane<CR>",     { silent = true } },
+      { "<C-t>", "<cmd>ZellijNewTab<CR>",        { silent = true } }
+    },
+  }
 }
 
 local opts = {}

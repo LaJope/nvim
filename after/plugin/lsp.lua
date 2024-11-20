@@ -9,11 +9,24 @@ lsp_zero.on_attach(function(client, bufnr)
   vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end,
     vim.tbl_extend('force', opts, { desc = 'Info about hovering object' }))
 
-  vim.keymap.set('n', 'L', function() vim.lsp.buf.signature_help() end,
-    vim.tbl_extend('force', opts, { desc = 'Open signature help' }))
+  -- vim.keymap.set('n', '<leader>vhq', function() vim.lsp.buf.implementation() end,
+  --   vim.tbl_extend('force', opts, { desc = 'Open signature help in normal mode' }))
+  -- vim.keymap.set('n', '<leader>vhw', function() vim.lsp.buf.type_definition() end,
+  --   vim.tbl_extend('force', opts, { desc = 'Open signature help in normal mode' }))
+  vim.keymap.set('n', '<leader>vh', function() vim.lsp.buf.references() end,
+    vim.tbl_extend('force', opts, { desc = 'Open quickfix with references to object' }))
 
-  vim.keymap.set('n', '<leader>vws', function() vim.lsp.buf.workspace_symbol() end,
+  vim.keymap.set('n', 'L', function() vim.lsp.buf.signature_help() end,
+    vim.tbl_extend('force', opts, { desc = 'Open signature help in normal mode' }))
+
+  vim.keymap.set('i', '<C-u>', function() vim.lsp.buf.signature_help() end,
+    vim.tbl_extend('force', opts, { desc = 'Open signature help in insert mode' }))
+
+  vim.keymap.set('n', '<leader>vwd', function() vim.lsp.buf.document_symbol() end,
     vim.tbl_extend('force', opts, { desc = 'List all the objects(symbols) in the file' }))
+
+  vim.keymap.set('n', '<leader>vwp', function() vim.lsp.buf.workspace_symbol() end,
+    vim.tbl_extend('force', opts, { desc = 'List all the objects(symbols) in the project' }))
 
   vim.keymap.set('n', '<leader>vd', function() vim.diagnostic.open_float() end,
     vim.tbl_extend('force', opts, { desc = 'Open floating error info' }))
@@ -33,8 +46,6 @@ lsp_zero.on_attach(function(client, bufnr)
   vim.keymap.set('n', '<leader>vrn', function() vim.lsp.buf.rename() end,
     vim.tbl_extend('force', opts, { desc = 'Rename symbol' }))
 
-  vim.keymap.set('i', '<C-u>', function() vim.lsp.buf.signature_help() end,
-    vim.tbl_extend('force', opts, { desc = 'Open signature help in insert mode' }))
 
   if client.server_capabilities.documentHighlightProvider then
     vim.cmd [[
