@@ -18,7 +18,7 @@ require('nvim-tree').setup({
   filters = {
     dotfiles = true,
     custom = {
-      './out/', 'CMakeLists.txt', 'cmake', 'Make', 'compile_commands.json',
+      'out', 'CMakeLists.txt', 'cmake', 'Make', 'compile_commands.json',
       'vcpkg', 'tasks.py', 'node_modules', 'package.json', 'package-lock.json',
       'README',
     },
