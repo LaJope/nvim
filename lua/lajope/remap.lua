@@ -1,13 +1,23 @@
 vim.g.mapleader = ' '
 
+
 vim.keymap.set('n', '<leader>qf', '<cmd>cclose<CR>', { desc = 'Close quickfix' })
+
+
+-- Terminal emulator
+vim.keymap.set('t', '<C-w>h', "<C-\\><C-n>",
+  { desc = 'Exit terminal mode', silent = true })
 
 -- Basic
 vim.keymap.set('n', '<C-s>', vim.cmd.w, { desc = 'Save current file' })
-vim.keymap.set('n', '<leader><leader>', '<cmd>so<CR>', { desc = 'Source current file' })
-vim.keymap.set('n', '<leader>x', '<cmd>!chmod +x %<CR>', { silent = true, desc = 'Make the current file executable' })
-vim.keymap.set('n', '<leader>qq', '<cmd>:qa<CR>', { desc = 'Quit neovim altogether (warns when unsaved)' })
-vim.keymap.set('n', '<leader>qy', '<cmd>:qa!<CR>', { desc = 'Quit neovim altogether (without warning)' })
+vim.keymap.set('n', '<leader><leader>', '<cmd>so<CR>',
+  { desc = 'Source current file' })
+vim.keymap.set('n', '<leader>x', '<cmd>!chmod +x %<CR>',
+  { silent = true, desc = 'Make the current file executable' })
+vim.keymap.set('n', '<leader>qq', '<cmd>:qa<CR>',
+  { desc = 'Quit neovim altogether (warns when unsaved)' })
+vim.keymap.set('n', '<leader>qy', '<cmd>:qa!<CR>',
+  { desc = 'Quit neovim altogether (without warning)' })
 
 
 -- Unbind
