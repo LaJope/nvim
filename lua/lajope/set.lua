@@ -6,9 +6,17 @@ vim.opt.smartcase = true
 
 vim.opt.cmdheight = 1         -- Cmd height
 
-vim.opt.nu = true             -- Numberline
+vim.opt.number = true         -- Numberline
 vim.opt.relativenumber = true -- Relative numberline
-vim.opt.numberwidth = 1       -- Width of numberline
+vim.o.statuscolumn = "%C %l %r "
+-- vim.o.statuscolumn = "%C%=%r│%=%l│%T"
+vim.o.statuscolumn = '' ..
+    '%C' ..
+    '%#CFold#%{&nu?v:lnum:\"\"}' ..
+    '%=%{&rnu&&(v:lnum%2)?\" \".v:relnum:\" \"}' ..
+    '%#CLineNr#%{&rnu&&!(v:lnum%2)?\"\".v:relnum:\"\"}' ..
+    '%{&rnu?\"\":\"   \"} '
+vim.opt.numberwidth = 2 -- Width of numberline
 
 vim.opt.textwidth = 80
 vim.opt.tabstop = 2 -- Width of tabulation
@@ -16,7 +24,7 @@ vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
-vim.opt.showtabline = 1
+vim.opt.showtabline = 2
 
 vim.opt.smartindent = true
 
