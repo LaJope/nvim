@@ -209,6 +209,12 @@ local plugins = {
       { "<C-t>", "<cmd>ZellijNewTab<CR>",        { silent = true } }
     },
   },
+  { 'echasnovski/mini.icons', version = '*' },
+  {
+    'stevearc/conform.nvim',
+    opts = {},
+  },
+  'leoluz/nvim-dap-go',
 }
 
 local opts = {}

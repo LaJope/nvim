@@ -161,12 +161,12 @@ vim.api.nvim_set_keymap('n', '<leader>:', ':', { noremap = true, desc = 'Ordinar
 vim.api.nvim_set_keymap('n', ':', '<cmd>FineCmdline<CR>', { noremap = true, desc = 'Fine cmd' })
 
 
--- Formating with LSP
+-- Formating with LSP or formatter
 vim.keymap.set('n', '<leader>f', function()
   if vim.fn.exists(':LspZeroFormat') == 1 then
     vim.cmd('LspZeroFormat')
   else
-    vim.lsp.buf.format()
+    require("conform").format()
   end
 end, { desc = 'Format code with LspZeroFormat or LSP' })
 
@@ -213,8 +213,10 @@ vim.keymap.set('n', '<leader>pf', '<Cmd>Telescope frecency workspace=CWD<CR>',
   { desc = 'Open telescope frecency file search' })
 
 -- Cmake-tools
-vim.keymap.set('n', '<leader>cg', vim.cmd.CMakeGenerate,
-  { desc = 'Run CMakeGenerate' })
+vim.keymap.set('n', '<leader>cg', function()
+  vim.cmd('silent !inv updateSrc')
+  vim.cmd('CMakeGenerate')
+end, { desc = 'Run CMakeGenerate' })
 
 vim.keymap.set('n', '<leader>cb', function()
   vim.cmd('silent !inv updateSrc')

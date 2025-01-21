@@ -1,4 +1,4 @@
-vim.g.cmake_tools_auto_create_log_buffer = false
+-- vim.g.cmake_tools_auto_create_log_buffer = false
 
 require("cmake-tools").setup {
   cmake_command = "cmake",                                          -- this is used to specify cmake command path
