@@ -4,18 +4,14 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
-vim.opt.cmdheight = 1         -- Cmd height
+vim.opt.cmdheight = 1 -- Cmd height
 
-vim.opt.number = true         -- Numberline
+vim.opt.number = true -- Numberline
 vim.opt.relativenumber = true -- Relative numberline
-vim.o.statuscolumn = "%C %l %r "
--- vim.o.statuscolumn = "%C%=%r│%=%l│%T"
-vim.o.statuscolumn = '' ..
-    '%C' ..
-    '%#CFold#%{&nu?v:lnum:\"\"}' ..
-    '%=%{&rnu&&(v:lnum%2)?\" \".v:relnum:\" \"}' ..
-    '%#CLineNr#%{&rnu&&!(v:lnum%2)?\"\".v:relnum:\"\"}' ..
-    '%{&rnu?\"\":\"   \"} '
+-- vim.o.statuscolumn = '%C%#CFold#%{&nu?v:lnum:""}%s' ..
+--                          '%=%{&rnu&&(v:lnum%2)?v:relnum:""}' ..
+--                          '%#CLineNr#%{&rnu&&!(v:lnum%2)?v:relnum:""}' ..
+--                          '%{&rnu?"":"  "} '
 vim.opt.numberwidth = 2 -- Width of numberline
 
 vim.opt.textwidth = 80
@@ -52,12 +48,11 @@ vim.opt.cursorline = true
 vim.api.nvim_set_option("clipboard", "unnamedplus")
 
 vim.opt.langmap = 'ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;' ..
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZ,' ..
-    'фисвуапршолдьтщзйкыегмцчня;' ..
-    'abcdefghijklmnopqrstuvwxyz'
+                      'ABCDEFGHIJKLMNOPQRSTUVWXYZ,' ..
+                      'фисвуапршолдьтщзйкыегмцчня;' ..
+                      'abcdefghijklmnopqrstuvwxyz'
 
 vim.o.autoread = true
-vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
-  command = "if mode() != 'c' | checktime | endif",
-  pattern = { "*" },
-})
+vim.api.nvim_create_autocmd({
+    "BufEnter", "CursorHold", "CursorHoldI", "FocusGained"
+}, {command = "if mode() != 'c' | checktime | endif", pattern = {"*"}})
