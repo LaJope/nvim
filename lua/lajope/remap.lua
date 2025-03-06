@@ -8,6 +8,9 @@ vim.keymap.set("n", "<leader>qf", "<cmd>cclose<CR>", { desc = "Close quickfix" }
 -- Terminal emulator
 vim.keymap.set("t", "<C-w>h", "<C-\\><C-n>", { desc = "Exit terminal mode", silent = true })
 
+-- Toggleterm
+vim.keymap.set({ "n", "t" }, "<leader>i", vim.cmd.ToggleTerm, { desc = "Toggle terminal pane" })
+
 -- Basic
 vim.keymap.set("n", "<C-s>", vim.cmd.w, { desc = "Save current file" })
 vim.keymap.set("n", "<leader><leader>", "<cmd>so<CR>", { desc = "Source current file" })
@@ -20,6 +23,44 @@ vim.keymap.set("n", "<A-s>", "<nop>", { desc = "Unbind Alt-s" })
 vim.keymap.set("n", "Q", "<nop>", { desc = "Unbind Q" })
 
 vim.keymap.set("n", "<A-x>", "<cmd>:q<CR>", { desc = "Close current window" })
+
+-- Nvim devcontainer
+vim.keymap.set("n", "<leader>ns", vim.cmd.DevcontainerStart,
+{ desc = "Start whatever using devcontainer.json" })
+vim.keymap.set("n", "<leader>na",
+function ()
+  require('lualine').hide({
+    place = {'statusline', 'tabline', 'winbar'},
+    unhide = false,
+  })
+
+  require("statuscol").setup({
+    ft_ignore = { "*" },
+    segments = {
+    },
+    }
+  )
+
+  vim.opt.cmdheight = 0
+  vim.opt.showtabline = 0
+  vim.opt.relativenumber = false
+  vim.opt.number = false
+  vim.cmd("DevcontainerAttach")
+end,
+{ desc = "Attach to whatever in devcontainer.json" })
+vim.keymap.set("n", "<leader>ne", vim.cmd.DevcontainerExec,
+{ desc = "Execute a single command on container in devcontainer.json" })
+vim.keymap.set("n", "<leader>np", vim.cmd.DevcontainerStop,
+{ desc = "Stop whatever was started based on devcontainer.json" })
+vim.keymap.set("n", "<leader>nxy", vim.cmd.DevcontainerStopAll,
+{ desc = "Stop everything started with this plugin (in current session)" })
+vim.keymap.set("n", "<leader>nry", vim.cmd.DevcontainerRemoveAll,
+{ desc = "Remove everything started with this plugin (in current session)" })
+vim.keymap.set("n", "<leader>nl", vim.cmd.DevcontainerLogs,
+{ desc = "Open plugin log file" })
+vim.keymap.set("n", "<leader>nc", vim.cmd.DevcontainerEditNearestConfig,
+{ desc = "Opens nearest/creates devcontainer.json" })
+
 
 -- Navigate within insert mode
 vim.keymap.set("i", "<C-b>", "<ESC>^i", { desc = "Go to the beggining of the line (insert mode)" })
@@ -47,33 +88,12 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move the line down" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move the line up" })
 
 -- Nvim dap
-
 vim.keymap.set("n", "mr", "<cmd>DapContinue<CR>", { desc = "End the debbug" })
 vim.keymap.set("n", "mb", "<cmd>DapToggleBreakpoint<CR>", { desc = "Add breakpoint at current line" })
 vim.keymap.set("n", "mi", "<cmd>DapStepInto<CR>", { desc = "Debbuger step into" })
 vim.keymap.set("n", "mu", "<cmd>DapStepOut<CR>", { desc = "Debugger step out" })
 vim.keymap.set("n", "mo", "<cmd>DapStepOver<CR>", { desc = "Debugger step over" })
 vim.keymap.set("n", "mq", "<cmd>DapTerminate<CR>", { desc = "Terminate debugger" })
-
--- Vimtex
-vim.keymap.set("n", "<leader>ll", "<cmd>VimtexCompile<CR>", { desc = "Compile latex document in continuous mode" })
-vim.keymap.set("n", "<leader>la", "<cmd>VimtexContextMenu<CR>", { desc = "Open vimtex context menu" })
-vim.keymap.set("n", "<leader>lq", "<cmd>VimtexClean<CR>", { desc = "Clean vimtex compiler" })
-vim.keymap.set("n", "<leader>le", "<cmd>VimtexErrors<CR>", { desc = "Show vimtex errors" })
-vim.keymap.set("n", "<leader>lg", "<cmd>VimtexStatus<CR>", { desc = "Show vimtex compiler status" })
-vim.keymap.set("n", "<leader>li", "<cmd>VimtexInfo<CR>", { desc = "Show vimtex info" })
-vim.keymap.set("n", "<leader>lk", "<cmd>VimtexStop<CR>", { desc = "Stop vimtex compiler" })
-vim.keymap.set("n", "<leader>lK", "<cmd>VimtexStopAll<CR>", { desc = "Stop vimtex (everything)" })
-vim.keymap.set({ "n", "v" }, "<leader>lcs", "<cmd>VimtexCompileSelected<CR>", { desc = "Compile selected" })
-vim.keymap.set("n", "<leader>lco", "<cmd>VimtexCompileOutput<CR>", { desc = "Show vimtex compile output" })
-vim.keymap.set("n", "<leader>lI", "<cmd>VimtexImapsList<CR>", { desc = "Show vimtex imaps list" })
-vim.keymap.set("n", "<leader>ls", "<cmd>VimtexLog<CR>", { desc = "Show vimtex log" })
-vim.keymap.set("n", "<leader>lm", "<cmd>VimtexToggleMain<CR>", { desc = "Toggle vimtex main" })
-vim.keymap.set("n", "<leader>lt", "<cmd>VimtexTocOpen<CR>", { desc = "Open vimtex toc" })
-vim.keymap.set("n", "<leader>lT", "<cmd>VimtexTocToggle<CR>", { desc = "Toggle vimtex toc" })
-vim.keymap.set("n", "<leader>lv", "<cmd>VimtexView<CR>", { desc = "Open vimtex pdf viewer" })
-vim.keymap.set("n", "<leader>lx", "<cmd>VimtexReload<CR>", { desc = "Reload vimtex plugin" })
-vim.keymap.set("n", "<leader>lX", "<cmd>VimtexReloadState<CR>", { desc = "Reload vimtex state" })
 
 -- Move up and own by half page
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Move down by half page" })
@@ -118,7 +138,7 @@ vim.api.nvim_set_keymap("n", ":", "<cmd>FineCmdline<CR>", { noremap = true, desc
 
 -- Formating with LSP or formatter
 vim.keymap.set("n", "<leader>f", function()
-	if vim.fn.exists(":LspZeroFormat") == 1 then
+	if vim.fn.exists(":LspZeroFormat") == 2 then
 		vim.cmd("LspZeroFormat")
 	else
 		require("conform").format()
@@ -152,7 +172,6 @@ vim.keymap.set("n", "<leader>e", vim.cmd.NvimTreeFocus, { desc = "Focus on NvimT
 
 -- Undotree
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Open UndoTree" })
-vim.keymap.set("n", "<leader>i", vim.cmd.UndotreeFocus, { desc = "Focus on UndoTree" })
 
 -- Comment
 vim.keymap.set("n", "<leader>/", function()
@@ -284,17 +303,3 @@ vim.keymap.set("n", "<leader>hp", vim.cmd.LiveServerStop, { desc = "Stop live se
 --  ['<C-b>'] = cmp_action.luasnip_jump_backward(),
 --  ['<C-u>'] = cmp.mapping.scroll_docs(-4),
 --  ['<C-d>'] = cmp.mapping.scroll_docs(4),
-
--- Misc
-
-vim.keymap.set("n", "<leader>hd", function()
-	for _ = 1, 10, 1 do
-		require("duck").hatch("🤡")
-	end
-end, { desc = "Hatch duck" })
-vim.keymap.set("n", "<leader>hk", function()
-	require("duck").cook()
-end, { desc = "Cook duck" })
-vim.keymap.set("n", "<leader>ha", function()
-	require("duck").cook_all()
-end, { desc = "Cook all ducks" })

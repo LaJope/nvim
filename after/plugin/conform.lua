@@ -1,27 +1,27 @@
 require("conform").setup({
-	formatters_by_ft = {
-		asm = { "asmfmt" },
-		nasm = { "asmfmt" },
+  formatters_by_ft = {
+    asm = { "asmfmt" },
+    nasm = { "asmfmt" },
 
-		bash = { "beautysh" },
-		zsh = { "beautysh" },
-		sh = { "beautysh" },
+    bash = { "beautysh" },
+    zsh = { "beautysh" },
+    sh = { "beautysh" },
 
-		cpp = { "clang-format" },
-		json = { "clang-format" },
-		java = { "clang-format" },
-		c = { "clang-format" },
-		hpp = { "clang-format" },
-		h = { "clang-format" },
+    cmake = { "gersemi" },
 
-		lua = { "stylua" },
+    cpp = { "clang-format" },
+    hpp = { "clang-format" },
+    c = { "clang-format" },
+    h = { "clang-format" },
 
-		go = { "goimports" },
+    java = { "clang-format" },
+    json = { "clang-format" },
 
-		python = { "pyink" },
-		-- You can customize some of the format options for the filetype (:help conform.format)
-		rust = { "rustfmt", lsp_format = "fallback" },
-		-- Conform will run the first available formatter
-		javascript = { "prettierd", "prettier", stop_after_first = true },
-	},
+    lua = { "stylua" },
+
+    go = { "goimports" },
+
+    python = { "pyink" },
+    rust = { "rustfmt", lsp_format = "fallback" },
+  },
 })

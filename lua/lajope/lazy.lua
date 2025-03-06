@@ -1,15 +1,18 @@
----@diagnostic disable: undefined-field
+---@diagnostic disable: undefined-field `fs_stat`
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-	vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
-		lazypath,
-	})
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+	if vim.v.shell_error ~= 0 then
+		vim.api.nvim_echo({
+			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+			{ out, "WarningMsg" },
+			{ "\nPress any key to exit..." },
+		}, true, {})
+		vim.fn.getchar()
+		os.exit(1)
+	end
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -54,15 +57,7 @@ local plugins = {
 			{ "rafamadriz/friendly-snippets" },
 		},
 	},
-
-	-- "lervag/vimtex",
-	-- {
-	-- 	"iurimateus/luasnip-latex-snippets.nvim",
-	-- 	config = function()
-	-- 		require("luasnip-latex-snippets").setup({ use_treesitter = true })
-	-- 		require("luasnip").config.setup({ enable_autosnippets = true })
-	-- 	end,
-	-- },
+	"esensar/nvim-dev-container",
 
 	{
 		"Djancyp/better-comments.nvim",
@@ -133,11 +128,8 @@ local plugins = {
 
 	"ojroques/nvim-bufdel",
 	"xiyaowong/transparent.nvim",
-	"sitiom/nvim-numbertoggle",
 	"rcarriga/nvim-notify",
 	"onsails/lspkind.nvim",
-	-- 'nolanderc/glsl_analyzer',
-	--'tikhomirov/vim-glsl'
 	{
 		"kevinhwang91/nvim-ufo",
 		dependencies = { { "kevinhwang91/promise-async" } },
@@ -149,10 +141,10 @@ local plugins = {
 
 	"ncm2/float-preview.nvim",
 
-	{
-		"mistricky/codesnap.nvim",
-		build = "make",
-	},
+	-- {
+	-- 	"mistricky/codesnap.nvim",
+	-- 	build = "make",
+	-- },
 
 	"sainnhe/gruvbox-material",
 
@@ -182,50 +174,48 @@ local plugins = {
 		end,
 		ft = { "markdown" },
 	},
-	{
-		"ellisonleao/glow.nvim",
-		config = true,
-		cmd = "Glow",
-	},
-	"eandrju/cellular-automaton.nvim",
-	"tamton-aquib/duck.nvim",
-	{
-		"amitds1997/remote-nvim.nvim",
-		version = "*", -- Pin to GitHub releases
-		dependencies = {
-			"nvim-lua/plenary.nvim", -- For standard functions
-			"MunifTanjim/nui.nvim", -- To build the plugin UI
-			"nvim-telescope/telescope.nvim", -- For picking b/w different remote methods
-		},
-		config = true,
-	},
-	{
-		"GR3YH4TT3R93/zellij-nav.nvim",
-		cond = os.getenv("ZELLIJ") == "0",
-		event = "VeryLazy",
-		init = function()
-			vim.g.zellij_nav_default_mappings = false
-		end,
-		opts = {},
-		keys = {
-			{ "<C-h>", "<cmd>ZellijNavigateLeft<CR>", { silent = true, desc = "trash" } },
-			{ "<C-j>", "<cmd>ZellijNavigateDown<CR>", { silent = true } },
-			{ "<C-k>", "<cmd>ZellijNavigateUp<CR>", { silent = true } },
-			{ "<C-l>", "<cmd>ZellijNavigateRight<CR>", { silent = true } },
-			{ "<C-n>", "<cmd>ZellijNewPane<CR>", { silent = true } },
-			{ "<C-s>", "<cmd>ZellijNewPaneSplit<CR>", { silent = true } },
-			{ "<C-v>", "<cmd>ZellijNewPaneVSplit<CR>", { silent = true } },
-			{ "<C-x>", "<cmd>ZellijClosePane<CR>", { silent = true } },
-			{ "<C-t>", "<cmd>ZellijNewTab<CR>", { silent = true } },
-		},
-	},
+	-- {
+	-- 	"amitds1997/remote-nvim.nvim",
+	-- 	version = "*", -- Pin to GitHub releases
+	-- 	dependencies = {
+	-- 		"nvim-lua/plenary.nvim", -- For standard functions
+	-- 		"MunifTanjim/nui.nvim", -- To build the plugin UI
+	-- 		"nvim-telescope/telescope.nvim", -- For picking b/w different remote methods
+	-- 	},
+	-- 	config = true,
+	-- },
+	-- {
+	-- 	"GR3YH4TT3R93/zellij-nav.nvim",
+	-- 	cond = os.getenv("ZELLIJ") == "0",
+	-- 	event = "VeryLazy",
+	-- 	init = function()
+	-- 		vim.g.zellij_nav_default_mappings = false
+	-- 	end,
+	-- 	opts = {},
+	-- 	keys = {
+	-- 		{ "<C-h>", "<cmd>ZellijNavigateLeft<CR>", { silent = true, desc = "trash" } },
+	-- 		{ "<C-j>", "<cmd>ZellijNavigateDown<CR>", { silent = true } },
+	-- 		{ "<C-k>", "<cmd>ZellijNavigateUp<CR>", { silent = true } },
+	-- 		{ "<C-l>", "<cmd>ZellijNavigateRight<CR>", { silent = true } },
+	-- 		{ "<C-n>", "<cmd>ZellijNewPane<CR>", { silent = true } },
+	-- 		{ "<C-s>", "<cmd>ZellijNewPaneSplit<CR>", { silent = true } },
+	-- 		{ "<C-v>", "<cmd>ZellijNewPaneVSplit<CR>", { silent = true } },
+	-- 		{ "<C-x>", "<cmd>ZellijClosePane<CR>", { silent = true } },
+	-- 		{ "<C-t>", "<cmd>ZellijNewTab<CR>", { silent = true } },
+	-- 	},
+	-- },
 	{ "echasnovski/mini.icons", version = "*" },
 	{
 		"stevearc/conform.nvim",
 		opts = {},
 	},
-	-- 'leoluz/nvim-dap-go',
 	"luukvbaal/statuscol.nvim",
+	{
+		"akinsho/toggleterm.nvim",
+		version = "*",
+		config = true,
+	},
+  "mfussenegger/nvim-lint"
 }
 
 local opts = {}
