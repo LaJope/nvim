@@ -2,11 +2,11 @@ local lint = require("lint")
 
 lint.linters_by_ft = {
   cmake = { "cmakelint" },
-  cpp = { "cpplint", "sonarlint-language-server" },
+  cpp = { "cpplint" },
   gd = { "gdtoolkit" },
   go = { "golangci-lint" },
   Dockerfile = { "hadolint" },
-  lua = { "luacheck" },
+  -- lua = { "luacheck" },
   python = { "pylint", "vulture" },
   bash = { "shellcheck" },
 }

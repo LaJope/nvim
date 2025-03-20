@@ -1,15 +1,20 @@
+local ignore = require("telescope-ignore")
+
+ignore.setDefaultIgnore({
+  'out/*',
+  'vcpkg*',
+  '*cmake-tools&',
+  'CMakeFiles/*',
+  'MakeFiles',
+  'cmake_install.cmake'
+})
+
+ignore.parseIgnoreFile()
+
 local telescope = require('telescope')
 telescope.setup({
   defaults = {
-    file_ignore_patterns = {
-      'out/*',
-      'vcpkg*',
-      '*cmake-tools&',
-      'Resources/*',
-      'CMakeFiles/*',
-      'MakeFiles',
-      'cmake_install.cmake'
-    }
+    file_ignore_patterns = ignore.list
   },
   extensions = {
     frecency = {

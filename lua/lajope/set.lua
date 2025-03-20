@@ -1,3 +1,5 @@
+CONFIG_PATH = "/home/lajope/.config/nvim/"
+
 vim.g.loaded_netrw = 1 -- Disable NetRW screen
 vim.g.loaded_netrwPlugin = 1
 

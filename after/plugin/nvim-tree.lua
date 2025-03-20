@@ -26,6 +26,6 @@ require('nvim-tree').setup({
             'vcpkg', 'tasks.py', 'node_modules', 'package.json',
             'package-lock.json', 'README'
         },
-        exclude = {'main.*', 'layout'}
+        exclude = {'main.*', 'layout', 'rout'}
     }
 })

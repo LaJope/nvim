@@ -1,7 +1,7 @@
 require("toggleterm").setup({
   -- open_mapping = [[<c-i>]],
   hide_numbers = true,
-  autochdir = false,
+  autochdir = true,
   -- highlights = {
   --   Normal = {
   --     guibg = "<VALUE-HERE>",
@@ -20,8 +20,8 @@ require("toggleterm").setup({
   terminal_mappings = true,
   persist_size = true,
   persist_mode = true,
-  direction = 'float',
   -- direction = 'vertical' | 'horizontal' | 'tab' | 'float',
+  direction = 'float',
   close_on_exit = true,
   clear_env = false,
   shell = vim.o.shell,
