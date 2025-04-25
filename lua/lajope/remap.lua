@@ -175,6 +175,7 @@ vim.keymap.set("n", "<leader>e", vim.cmd.NvimTreeFocus, { desc = "Focus on NvimT
 
 -- Undotree
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Open UndoTree" })
+vim.keymap.set("n", "<leader>i", vim.cmd.UndotreeFocus, { desc = "Focus on UndoTree" })
 
 -- Comment
 vim.keymap.set("n", "<leader>/", function()
@@ -201,12 +202,12 @@ vim.keymap.set(
 
 -- Cmake-tools
 vim.keymap.set("n", "<leader>cg", function()
-  vim.cmd("silent !inv updateSrc")
+  -- vim.cmd("silent !inv updateSrc") -- absolete
   vim.cmd("CMakeGenerate")
 end, { desc = "Run CMakeGenerate with updating source files" })
 
 vim.keymap.set("n", "<leader>cb", function()
-  vim.cmd("silent !inv updateSrc")
+  -- vim.cmd("silent !inv updateSrc") -- absolete
   vim.cmd("CMakeBuild")
 end, { desc = "Run CMakeBuild with updating source files" })
 
