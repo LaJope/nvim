@@ -17,6 +17,7 @@ theme.buttons.val = {
   dashboard.button("<spc>ps", "󰊄  Live grep", "<cmd>Telescope live_grep"),
   dashboard.button("c", "  Configuration", cd_command),
   dashboard.button("u", "  Open lazy", "<cmd>Lazy<CR>"),
+  dashboard.button("m", "  Open mason", "<cmd>Mason<CR>"),
   dashboard.button("q", "󰅚  Quit", "<cmd>qa<CR>"),
 }
 
