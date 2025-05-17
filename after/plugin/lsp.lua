@@ -103,6 +103,16 @@ lspconfig.clangd.setup({
 	},
 })
 
+lspconfig.arduino_language_server.setup({
+  cmd = {
+    "arduino-language-server",
+    "-cli-config", "/home/lajope/.arduino15/arduino-cli.yaml",
+    "-fqbn", "esp32:esp32:esp32",
+    "-cli", "/usr/bin/arduino-cli",
+    "-clangd", "/home/lajope/.local/share/nvim/mason/bin/clangd"
+  },
+})
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
