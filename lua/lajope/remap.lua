@@ -22,6 +22,16 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc =
 vim.keymap.set("n", "<leader>qq", "<cmd>:qa<CR>", { desc = "Quit neovim altogether (warns when unsaved)" })
 vim.keymap.set("n", "<leader>qy", "<cmd>:qa!<CR>", { desc = "Quit neovim altogether (without warning)" })
 
+-- Statuscol
+vim.keymap.set("n", "<leader>at", function()
+  if COL_STYLE == "full" then
+    COL_STYLE = "rel"
+  else
+    COL_STYLE = "full"
+  end
+  vim.cmd("source "..CONFIG_PATH.."/after/plugin/statuscol.lua")
+end, { desc = "Change status col style " })
+
 -- Unbind
 vim.keymap.set("n", "<A-s>", "<nop>", { desc = "Unbind Alt-s" })
 vim.keymap.set("n", "Q", "<nop>", { desc = "Unbind Q" })
