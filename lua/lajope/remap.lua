@@ -12,7 +12,7 @@ vim.keymap.set("n", "<leader>qf", "<cmd>cclose<CR>", { desc = "Close quickfix" }
 vim.keymap.set("t", "<C-w>h", "<C-\\><C-n>", { desc = "Exit terminal mode", silent = true })
 
 -- Toggleterm
-vim.keymap.set({ "n", "t" }, "<C-q>", vim.cmd.ToggleTerm, { desc = "Toggle terminal pane" })
+vim.keymap.set({ "n", "t", "i" }, "<C-q>", vim.cmd.ToggleTerm, { desc = "Toggle terminal pane" })
 
 -- Basic
 vim.keymap.set("n", "<C-s>", vim.cmd.w, { desc = "Save current file" })
@@ -24,12 +24,12 @@ vim.keymap.set("n", "<leader>qy", "<cmd>:qa!<CR>", { desc = "Quit neovim altoget
 
 -- Statuscol
 vim.keymap.set("n", "<leader>at", function()
-  if COL_STYLE == "full" then
-    COL_STYLE = "rel"
-  else
-    COL_STYLE = "full"
-  end
-  vim.cmd("source "..CONFIG_PATH.."/after/plugin/statuscol.lua")
+	if COL_STYLE == "full" then
+		COL_STYLE = "rel"
+	else
+		COL_STYLE = "full"
+	end
+	vim.cmd("source " .. CONFIG_PATH .. "/after/plugin/statuscol.lua")
 end, { desc = "Change status col style " })
 
 -- Unbind
@@ -39,42 +39,55 @@ vim.keymap.set("n", "Q", "<nop>", { desc = "Unbind Q" })
 vim.keymap.set("n", "<A-x>", "<cmd>:q<CR>", { desc = "Close current window" })
 
 -- Nvim devcontainer
-vim.keymap.set("n", "<leader>ns", vim.cmd.DevcontainerStart,
-  { desc = "Start whatever using devcontainer.json" })
-vim.keymap.set("n", "<leader>na",
-  function()
-    require('lualine').hide({
-      place = { 'statusline', 'tabline', 'winbar' },
-      unhide = false,
-    })
+vim.keymap.set("n", "<leader>ns", vim.cmd.DevcontainerStart, { desc = "Start whatever using devcontainer.json" })
+vim.keymap.set("n", "<leader>na", function()
+	require("lualine").hide({
+		place = { "statusline", "tabline", "winbar" },
+		unhide = false,
+	})
 
-    require("statuscol").setup({
-      ft_ignore = { "*" },
-      segments = {
-      },
-    }
-    )
+	require("statuscol").setup({
+		ft_ignore = { "*" },
+		segments = {},
+	})
 
-    vim.opt.cmdheight = 0
-    vim.opt.showtabline = 0
-    vim.opt.relativenumber = false
-    vim.opt.number = false
-    vim.cmd("DevcontainerAttach")
-  end,
-  { desc = "Attach to whatever in devcontainer.json" })
-vim.keymap.set("n", "<leader>ne", vim.cmd.DevcontainerExec,
-  { desc = "Execute a single command on container in devcontainer.json" })
-vim.keymap.set("n", "<leader>np", vim.cmd.DevcontainerStop,
-  { desc = "Stop whatever was started based on devcontainer.json" })
-vim.keymap.set("n", "<leader>nxy", vim.cmd.DevcontainerStopAll,
-  { desc = "Stop everything started with this plugin (in current session)" })
-vim.keymap.set("n", "<leader>nry", vim.cmd.DevcontainerRemoveAll,
-  { desc = "Remove everything started with this plugin (in current session)" })
-vim.keymap.set("n", "<leader>nl", vim.cmd.DevcontainerLogs,
-  { desc = "Open plugin log file" })
-vim.keymap.set("n", "<leader>nc", vim.cmd.DevcontainerEditNearestConfig,
-  { desc = "Opens nearest/creates devcontainer.json" })
-
+	vim.opt.cmdheight = 0
+	vim.opt.showtabline = 0
+	vim.opt.relativenumber = false
+	vim.opt.number = false
+	vim.cmd("DevcontainerAttach")
+end, { desc = "Attach to whatever in devcontainer.json" })
+vim.keymap.set(
+	"n",
+	"<leader>ne",
+	vim.cmd.DevcontainerExec,
+	{ desc = "Execute a single command on container in devcontainer.json" }
+)
+vim.keymap.set(
+	"n",
+	"<leader>np",
+	vim.cmd.DevcontainerStop,
+	{ desc = "Stop whatever was started based on devcontainer.json" }
+)
+vim.keymap.set(
+	"n",
+	"<leader>nxy",
+	vim.cmd.DevcontainerStopAll,
+	{ desc = "Stop everything started with this plugin (in current session)" }
+)
+vim.keymap.set(
+	"n",
+	"<leader>nry",
+	vim.cmd.DevcontainerRemoveAll,
+	{ desc = "Remove everything started with this plugin (in current session)" }
+)
+vim.keymap.set("n", "<leader>nl", vim.cmd.DevcontainerLogs, { desc = "Open plugin log file" })
+vim.keymap.set(
+	"n",
+	"<leader>nc",
+	vim.cmd.DevcontainerEditNearestConfig,
+	{ desc = "Opens nearest/creates devcontainer.json" }
+)
 
 -- Navigate within insert mode
 vim.keymap.set("i", "<C-b>", "<ESC>^i", { desc = "Go to the beggining of the line (insert mode)" })
@@ -127,19 +140,19 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete without copy
 vim.keymap.set("n", "<leader>tt", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics (Trouble)" })
 
 vim.keymap.set(
-  "n",
-  "<leader>tb",
-  "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-  { desc = "Buffer Diagnostics (Trouble)" }
+	"n",
+	"<leader>tb",
+	"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+	{ desc = "Buffer Diagnostics (Trouble)" }
 )
 
 vim.keymap.set("n", "<leader>ts", "<cmd>Trouble symbols toggle focus=false<cr>", { desc = "Symbols (Trouble)" })
 
 vim.keymap.set(
-  "n",
-  "<leader>tl",
-  "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-  { desc = "LSP Definitions / references / ... (Trouble)" }
+	"n",
+	"<leader>tl",
+	"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+	{ desc = "LSP Definitions / references / ... (Trouble)" }
 )
 
 vim.keymap.set("n", "<leader>tp", "<cmd>Trouble loclist toggle<cr>", { desc = "Location List (Trouble)" })
@@ -152,25 +165,25 @@ vim.api.nvim_set_keymap("n", ":", "<cmd>FineCmdline<CR>", { noremap = true, desc
 
 -- Formating with LSP or formatter
 vim.keymap.set("n", "<leader>f", function()
-  if vim.fn.exists(":LspZeroFormat") == 2 then
-    vim.cmd("LspZeroFormat")
-  else
-    require("conform").format()
-  end
+	if vim.fn.exists(":LspZeroFormat") == 2 then
+		vim.cmd("LspZeroFormat")
+	else
+		require("conform").format()
+	end
 end, { desc = "Format code with LspZeroFormat or LSP" })
 
 -- Rename
 vim.keymap.set(
-  "v",
-  "<leader>s",
-  [[:s///gI<Left><Left><Left><Left>]],
-  { desc = "Rename every enstance of some word in the selected area" }
+	"v",
+	"<leader>s",
+	[[:s///gI<Left><Left><Left><Left>]],
+	{ desc = "Rename every enstance of some word in the selected area" }
 )
 vim.keymap.set(
-  "n",
-  "<leader>s",
-  [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-  { desc = "Rename every enstance of the word in the file" }
+	"n",
+	"<leader>s",
+	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+	{ desc = "Rename every enstance of the word in the file" }
 )
 
 -- Split window
@@ -190,13 +203,13 @@ vim.keymap.set("n", "<leader>i", vim.cmd.UndotreeFocus, { desc = "Focus on UndoT
 
 -- Comment
 vim.keymap.set("n", "<leader>/", function()
-  require("Comment.api").toggle.linewise.current()
+	require("Comment.api").toggle.linewise.current()
 end, { desc = "Comment current line" })
 vim.keymap.set(
-  "v",
-  "<leader>/",
-  "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
-  { desc = "Comment selected lines" }
+	"v",
+	"<leader>/",
+	"<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
+	{ desc = "Comment selected lines" }
 )
 
 -- Telescope
@@ -205,35 +218,35 @@ vim.keymap.set("n", "<leader>pe", builtin.find_files, { desc = "Open telescope f
 vim.keymap.set("n", "<C-p>", builtin.git_files, { desc = "Open telescope git file search" })
 vim.keymap.set("n", "<leader>ps", builtin.live_grep, { desc = "Open telescope word search" })
 vim.keymap.set(
-  "n",
-  "<leader>pf",
-  "<Cmd>Telescope frecency workspace=CWD<CR>",
-  { desc = "Open telescope frecency file search" }
+	"n",
+	"<leader>pf",
+	"<Cmd>Telescope frecency workspace=CWD<CR>",
+	{ desc = "Open telescope frecency file search" }
 )
 
 -- Cmake-tools
 vim.keymap.set("n", "<leader>cg", function()
-  -- vim.cmd("silent !inv updateSrc") -- absolete
-  vim.cmd("CMakeGenerate")
+	-- vim.cmd("silent !inv updateSrc") -- absolete
+	vim.cmd("CMakeGenerate")
 end, { desc = "Run CMakeGenerate with updating source files" })
 
 vim.keymap.set("n", "<leader>cb", function()
-  -- vim.cmd("silent !inv updateSrc") -- absolete
-  vim.cmd("CMakeBuild")
+	-- vim.cmd("silent !inv updateSrc") -- absolete
+	vim.cmd("CMakeBuild")
 end, { desc = "Run CMakeBuild with updating source files" })
 
 vim.keymap.set("n", "<leader>csb", vim.cmd.CMakeSelectBuildTarget, { desc = "Change build target" })
 
 vim.keymap.set("n", "<leader>cp", function()
-  vim.cmd("CMakeSelectBuildTarget")
-  vim.cmd("CMakeBuild")
+	vim.cmd("CMakeSelectBuildTarget")
+	vim.cmd("CMakeBuild")
 end, { desc = "Change build target and build" })
 
 vim.keymap.set("n", "<leader>cst", vim.cmd.CMakeSelectBuildType, { desc = "Change build type" })
 
 vim.keymap.set("n", "<leader>cr", function()
-  vim.cmd("CMakeSelectLaunchTarget")
-  vim.cmd("CMakeDebug")
+	vim.cmd("CMakeSelectLaunchTarget")
+	vim.cmd("CMakeDebug")
 end, { desc = "Toggle the state of the debugger" })
 
 -- Bufferline
