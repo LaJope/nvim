@@ -1,1 +1,1 @@
-require('lajope')
+require("lajope")
