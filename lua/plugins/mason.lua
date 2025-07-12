@@ -7,7 +7,7 @@ local masonlp_setup = {
   ensure_installed = {
     -- "clangd",
     "lua_ls",
-  }
+  },
 }
 
 local function mason_lsp_config()
@@ -15,17 +15,18 @@ local function mason_lsp_config()
   masonlp.setup(masonlp_setup)
 end
 
-return {
+local dependencies = {
   {
     "mason-org/mason.nvim",
     config = mason_config,
   },
+  "neovim/nvim-lspconfig",
+}
+
+return {
   {
     "mason-org/mason-lspconfig.nvim",
-    dependencies = {
-      "mason-org/mason.nvim",
-      "neovim/nvim-lspconfig",
-    },
+    dependencies = dependencies,
     config = mason_lsp_config,
-  }
+  },
 }

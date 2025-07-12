@@ -42,31 +42,28 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
 vim.opt.cursorline = true
 
+vim.o.foldcolumn = "1"
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+
+---@diagnostic disable-next-line: deprecated
 vim.api.nvim_set_option("clipboard", "unnamedplus")
 
-vim.opt.langmap = 'ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;' ..
-                      'ABCDEFGHIJKLMNOPQRSTUVWXYZ,' ..
-                      'фисвуапршолдьтщзйкыегмцчня;' ..
-                      'abcdefghijklmnopqrstuvwxyz'
+vim.opt.langmap = "ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;"
+    .. "ABCDEFGHIJKLMNOPQRSTUVWXYZ,"
+    .. "фисвуапршолдьтщзйкыегмцчня;"
+    .. "abcdefghijklmnopqrstuvwxyz"
 
 vim.o.autoread = true
 
-vim.api.nvim_create_autocmd(
-  { "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" },
-  {
-    callback = function()
-      local bufnr = tonumber(vim.fn.expand "<abuf>")
-      if not bufnr then return end
-      local name = vim.api.nvim_buf_get_name(bufnr)
-      if
-        name == ""
-        or vim.bo[bufnr].buftype ~= ""
-        or not vim.fn.filereadable(name)
-      then
-        return
-      end
-      vim.cmd(bufnr .. "checktime")
-    end,
-    pattern = {"*"}
-  }
-)
+vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
+  callback = function()
+    local bufnr = tonumber(vim.fn.expand("<abuf>"))
+    if not bufnr then return end
+    local name = vim.api.nvim_buf_get_name(bufnr)
+    if name == "" or vim.bo[bufnr].buftype ~= "" or not vim.fn.filereadable(name) then return end
+    vim.cmd(bufnr .. "checktime")
+  end,
+  pattern = { "*" },
+})

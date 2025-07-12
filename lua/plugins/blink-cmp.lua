@@ -1,19 +1,28 @@
+local keymaps = {
+  preset = "none",
+
+  ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+  ["<C-e>"] = { "hide" },
+  ["<C-o>"] = { "select_and_accept" },
+
+  ["<Up>"] = { "select_prev", "fallback" },
+  ["<Down>"] = { "select_next", "fallback" },
+  ["<C-p>"] = { "select_prev", "fallback_to_mappings" },
+  ["<C-n>"] = { "select_next", "fallback_to_mappings" },
+
+  ["<C-u>"] = { "scroll_documentation_up", "fallback" },
+  ["<C-d>"] = { "scroll_documentation_down", "fallback" },
+
+  ["<C-f>"] = { "snippet_forward", "fallback" },
+  ["<C-b>"] = { "snippet_backward", "fallback" },
+
+  ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
+}
+
 ---@module "blink.cmp"
 ---@type blink.cmp.Config
 local opts = {
-  -- "default" (recommended) for mappings similar to built-in completions (C-y to accept)
-  -- "super-tab" for mappings similar to vscode (tab to accept)
-  -- "enter" for enter to accept
-  -- "none" for no mappings
-  --
-  -- All presets have the following mappings:
-  -- C-space: Open menu or open docs if already open
-  -- C-n/C-p or Up/Down: Select next/previous item
-  -- C-e: Hide menu
-  -- C-k: Toggle signature help (if signature.enabled = true)
-  --
-  -- See :h blink-cmp-config-keymap for defining your own keymap
-  keymap = { preset = "default" },
+  keymap = keymaps,
 
   appearance = { nerd_font_variant = "mono" },
 
@@ -33,14 +42,25 @@ local opts = {
   fuzzy = { implementation = "prefer_rust_with_warning" },
 }
 
+local dependencies = {
+  "rafamadriz/friendly-snippets",
+  {
+    "L3MON4D3/LuaSnip",
+    version = "v2.*",
+    build = "make install_jsregexp",
+    config = function()
+      require("luasnip.loaders.from_vscode").lazy_load()
+    end,
+  },
+}
 
 return {
   "saghen/blink.cmp",
-  dependencies = { "rafamadriz/friendly-snippets" },
+  dependencies = dependencies,
 
   version = "1.*",
   build = "cargo build --release",
 
   opts = opts,
-  opts_extend = { "sources.default" }
+  opts_extend = { "sources.default" },
 }

@@ -1,7 +1,7 @@
 local select_keymaps = {
   ["a="]={ query="@assignment.outer", desc="Select outer part of an assignment" },
   ["i="]={ query="@assignment.inner", desc="Select inner part of an assignment" },
-  ["l="]={ query="@assignment.lhs", desc="Select left hand side of an assignment" },
+  ["t="]={ query="@assignment.lhs", desc="Select left hand side of an assignment" },
   ["r="]={ query="@assignment.rhs", desc="Select right hand side of an assignment" },
   ["aa"]={ query="@parameter.outer", desc="Select outer part of a parameter/argument" },
   ["ia"]={ query="@parameter.inner", desc="Select inner part of a parameter/argument" },
@@ -63,21 +63,22 @@ local move_keymaps = {
 }
 
 local function repeat_move()
-  local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
+  local trm = require("nvim-treesitter.textobjects.repeatable_move")
 
-  vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move,
+  vim.keymap.set({ "n", "x", "o" }, ":", trm.repeat_last_move,
     { desc="Repeat treesitter-textobject last action" })
-  vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_opposite,
+  vim.keymap.set({ "n", "x", "o" }, ",", trm.repeat_last_move_opposite,
     { desc="Repeat treesitter-textobject last action" })
 
-  --vim.keymap.set({ "n", "x", "o" }, "f", ts_repeat_move.builtin_f,
-    --{ desc="Repeat treesitter-textobject last action" })
-  --vim.keymap.set({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F,
-    --{ desc="Repeat treesitter-textobject last action" })
-  --vim.keymap.set({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t,
-    --{ desc="Repeat treesitter-textobject last action" })
-  --vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T,
-    --{ desc="Repeat treesitter-textobject last action" })
+  vim.keymap.set({ "n", "x", "o" }, "f", trm.builtin_f_expr {expr = true},
+    { desc="Repeat last f action" })
+  vim.keymap.set({ "n", "x", "o" }, "F", trm.builtin_F_expr {expr = true},
+    { desc="Repeat last F action" })
+
+  vim.keymap.set({ "n", "x", "o" }, "t", trm.builtin_t_expr {expr = true},
+    { desc="Repeat treesitter-textobject last action" })
+  vim.keymap.set({ "n", "x", "o" }, "T", trm.builtin_T_expr {expr = true},
+    { desc="Repeat treesitter-textobject last action" })
 end
 
 local ts_setup = {
@@ -112,5 +113,5 @@ end
 return {
   "nvim-treesitter/nvim-treesitter-textobjects",
   event = { "BufReadPre", "BufNewFile" },
-  config = config,
+  --config = config,
 }
