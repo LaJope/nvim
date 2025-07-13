@@ -1,3 +1,5 @@
+-- TODO: Confugure with blink.cmp
+
 local function desc(opts, description) return vim.tbl_extend("force", opts, { desc = description }) end
 
 local function callback(ev)
@@ -28,13 +30,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 local function config()
-  local lspconfig = require("lspconfig")
-
   --vim.lsp.enable("clangd")
   vim.lsp.enable("lua_ls")
 end
 
+local dependencies = {}
+
 return {
   "neovim/nvim-lspconfig",
+  dependencies = dependencies,
   config = config,
 }
