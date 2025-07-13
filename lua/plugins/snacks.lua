@@ -1,13 +1,17 @@
+local image_path = "~/HDD/Backgrounds/public/daniil-silantev-iGCDwT8BKEk-unsplash.jpg"
+local chafa_cmd = "chafa -f symbols " .. image_path .. " -c full --size 60x17 --fit-width"
+
+local image_cmd = "cat ~/.config/nvim/dashboard_image.txt"
+
 local sections = {
 	{
 		section = "terminal",
-		-- cmd = "chafa -f symbols ~/HDD/Backgrounds/public/daniil-silantev-iGCDwT8BKEk-unsplash.jpg -c full --size 60x17 --fit-width",
-		cmd = "cat ~/.config/nvim/dashboard_image.txt",
+		cmd = image_cmd,
 		height = 17,
 		padding = 1,
 	},
 	{ section = "keys", indent = 1, padding = 1 },
-	{ pane = 2,  section = "recent_files", indent = 2, padding = 1 },
+	-- { pane = 2, section = "recent_files", indent = 2, padding = 1 },
 	{ section = "startup" },
 }
 
@@ -43,14 +47,6 @@ local dashboard = {
 			{ icon = "🝚 ", key = "m", desc = "Mason", action = ":Mason", enabled = package.loaded.lazy ~= nil },
 			{ icon = " ", key = "q", desc = "Quit", action = ":qa" },
 		},
-		-- Used by the `header` section
-		header = [[
-███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
-████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
-██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
-██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
-██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
-╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝]],
 	},
 	sections = sections,
 }
@@ -81,6 +77,8 @@ local keys = {
 	-- scratch
 	{ "<leader>.", function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
 	{ "<leader>S", function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
+	-- dashboard
+	{ "<leader>pa", function() Snacks.dashboard() end, desc = "Open dashboard" },
 }
 
 return {
@@ -100,7 +98,7 @@ return {
 		scope = { enabled = false },
 		scroll = { enabled = false },
 		statuscolumn = statuscolumn,
-    terminal = { enabled = true },
+		terminal = { enabled = true },
 		words = { enabled = false },
 	},
 	keys = keys,
