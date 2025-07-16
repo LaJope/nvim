@@ -37,6 +37,7 @@ local function config()
 	transparent.clear_prefix("BufferLine")
 	-- transparent.clear_prefix("Neo-tree")
 	transparent.clear_prefix("TroubleNormal")
+	transparent.clear_prefix("TreesitterContext")
 end
 
 return {

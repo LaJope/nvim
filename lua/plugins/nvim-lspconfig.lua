@@ -12,7 +12,7 @@ local function callback(ev)
   vim.keymap.set("n", "gi", vim.lsp.buf.implementation, desc(opts, "Go to implementation"))
   vim.keymap.set("n", "gr", vim.lsp.buf.references, desc(opts, "Show quickfix with references"))
 
-  vim.keymap.set("n", "<C-K>", vim.lsp.buf.signature_help, desc(opts, "Signarure help"))
+  -- vim.keymap.set("n", "<C-K>", vim.lsp.buf.signature_help, desc(opts, "Signarure help"))
   vim.keymap.set("i", "<C-U>", vim.lsp.buf.signature_help, desc(opts, "Signarure help (insert mode)"))
 
   vim.keymap.set("n", "<leader>vd", vim.lsp.buf.type_definition, desc(opts, "Type definition"))

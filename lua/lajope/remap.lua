@@ -16,6 +16,10 @@ vim.keymap.set("n", "<A-x>", "<cmd>q<CR>", { desc = "Close current window" })
 -- Visualmode
 vim.keymap.set("v", "$", "g_", { desc = "Select to line end excluding newline symbol" })
 
+-- Change navigation
+vim.keymap.set({"n", "v"}, "j", "gj", { desc = "Move down (g)" })
+vim.keymap.set({"n", "v"}, "k", "gk", { desc = "Move up (g)" })
+
 -- Navigate within insert mode
 vim.keymap.set("i", "<C-b>", "<ESC>^i", { desc = "Go to the line beggining (insert mode)" })
 vim.keymap.set("i", "<C-e>", "<End>", { desc = "Go to the line end (insert mode)" })
